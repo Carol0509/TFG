@@ -19,7 +19,7 @@ CREATE TABLE users (
 CREATE TABLE scores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    game VARCHAR(50) NOT NULL,
+    game_id INT NOT NULL,
     score INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -30,7 +30,7 @@ CREATE TABLE games (
     name VARCHAR(50) NOT NULL UNIQUE,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id) REFERENCES scores(game) ON DELETE CASCADE
+    FOREIGN KEY (id) REFERENCES scores(game_id) ON DELETE CASCADE
 );
 
 
