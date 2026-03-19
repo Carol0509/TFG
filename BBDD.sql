@@ -7,29 +7,29 @@ USE relax_corp_games;
 
 -- Tabla de usuarios --
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT UNSIGNED PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW(),
     is_admin BOOLEAN DEFAULT FALSE
 );
 
 -- Tabla de resultados --
 
 CREATE TABLE scores (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT UNSIGNED PRIMARY KEY,
     user_id INT NOT NULL,
     game_id INT NOT NULL,
     score INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
  -- Tabla de juegos --
 CREATE TABLE games (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT UNSIGNED PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
     description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (id) REFERENCES scores(game_id) ON DELETE CASCADE
 );
 
