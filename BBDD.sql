@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS relax_copr_games;
+DROP DATABASE IF EXISTS relax_corp_games;
 CREATE DATABASE IF NOT EXISTS relax_corp_games;
 USE relax_corp_games;
 
