@@ -39,7 +39,7 @@ CREATE TABLE scores (
 
 -- CREACION DEL USUARIO ADMINISTRADOR Y OTORGACION DE PERMISOS --
 
-CREATE USER 'admin'@'*' IDENTIFIED BY 'contraseña';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'contraseña';
 GRANT ALL PRIVILEGES ON relax_corp_games.* TO 'admin'@'*';
 FLUSH PRIVILEGES;
 INSERT INTO users (username, password, is_admin) VALUES ('admin', 'contraseña', TRUE);
