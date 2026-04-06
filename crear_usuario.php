@@ -6,6 +6,7 @@ if (!isset($_SESSION['user']) || !$_SESSION['is_admin']) {
     exit;
 }
 
+$mensaje = "";
 // conexión
 $pdo = new PDO("mysql:host=localhost;dbname=relax_corp_games;charset=utf8mb4", "root", "");
 
@@ -16,12 +17,30 @@ if (isset($_POST['crear'])) {
     $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
     $stmt->execute([$user, $pass]);
 
-    echo "Usuario creado";
+    $mensaje = "Usuario creado";
 }
 ?>
 
-<form method="POST">
-    <input type="text" name="username" placeholder="Usuario" required><br>
-    <input type="password" name="password" placeholder="Contraseña" required><br>
-    <button name="crear">Crear</button>
-</form>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Usuario</title>
+</head>
+<body>
+    <h2>Crear Nuevo Usuario</h2>
+
+    <?php if (!empty($mensaje)): ?>
+        <p style="color: green;"><?php echo $mensaje; ?></p>
+    <?php endif; ?>
+
+    <form method="POST">
+        <input type="text" name="username" placeholder="Usuario" required><br><br>
+        <input type="password" name="password" placeholder="Contraseña" required><br><br>
+        
+        <button name="crear">Crear Usuario</button>
+        <a href="pag_juegos.php"><button type="button">Volver al Panel</button></a>
+    </form>
+
+</body>
+</html>
