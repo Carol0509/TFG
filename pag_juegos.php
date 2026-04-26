@@ -5,7 +5,7 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-//Obtener los usuarios de la base de datos para poder eliminarlos
+// Obtener los usuarios de la base de datos para poder eliminarlos
 $usuarios = [];
 if ($_SESSION['is_admin']) {
     $pdo = new PDO("mysql:host=localhost;dbname=relax_corp_games;charset=utf8mb4", "root", "");
@@ -20,50 +20,69 @@ if ($_SESSION['is_admin']) {
 <head>
     <meta charset="UTF-8">
     <title>Panel de Juegos</title>
-    <style>
-        table { border-collapse: collapse; width: 50%; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #f4f4f4; }
-        .btn-delete { color: red; text-decoration: none; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>¡Hola, <?php echo htmlspecialchars($_SESSION['user']); ?>!</h1>
-    
-    <?php if ($_SESSION['is_admin']): ?>
-        <hr>
-        <h2>Panel de Administrador</h2>
-        <a href="crear_usuario.php">Crear nuevo usuario</a>
+    <div class="container">
+        <h1>¡Hola, <?php echo htmlspecialchars($_SESSION['user']); ?>!</h1>
         
-        <h3>Gestión de Usuarios Existentes</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Fecha Registro</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($usuarios as $u): ?>
-                <tr>
-                    <td><?= $u['id'] ?></td>
-                    <td><?= htmlspecialchars($u['username']) ?></td>
-                    <td><?= $u['created_at'] ?></td>
-                    <td>
-                        <a href="eliminar_usuario.php?id=<?= $u['id'] ?>" 
-                           class="btn-delete" 
-                           onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <hr>
-    <?php endif; ?>
+        <?php if ($_SESSION['is_admin']): ?>
+            <hr>
+            <h2>Panel de Administrador</h2>
+            
+            <div style="margin-bottom: 20px;">
+                <a href="crear_usuario.php" class="btn-link">Crear nuevo usuario</a>
+                
+                <button type="button" class="btn-link" id="btn-toggle-usuarios">
+                    Gestionar Usuarios Existentes
+                </button>
+            </div>
 
-    <p>Has ingresado correctamente al sistema.</p>
-    <a href="logout.php">Cerrar Sesión</a>
+            <div id="tabla-usuarios">
+                <h3>Gestión de Usuarios Existentes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Fecha Registro</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($usuarios as $u): ?>
+                        <tr>
+                            <td><?= $u['id'] ?></td>
+                            <td><?= htmlspecialchars($u['username']) ?></td>
+                            <td><?= $u['created_at'] ?></td>
+                            <td>
+                                <a href="eliminar_usuario.php?id=<?= $u['id'] ?>" 
+                                   class="btn-delete" 
+                                   onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        <?php endif; ?>
+
+        <p>Has ingresado correctamente al sistema.</p>
+        <a href="logout.php" class="btn">Cerrar Sesión</a>
+    </div>
+
+    <script>
+        document.getElementById('btn-toggle-usuarios').addEventListener('click', function() {
+            var tabla = document.getElementById('tabla-usuarios');
+            if (tabla.style.display === 'none' || tabla.style.display === '') {
+                tabla.style.display = 'block';
+                this.innerText = 'Ocultar Gestión de Usuarios';
+            } else {
+                tabla.style.display = 'none';
+                this.innerText = 'Gestionar Usuarios Existentes';
+            }
+        });
+    </script>
 </body>
 </html>
