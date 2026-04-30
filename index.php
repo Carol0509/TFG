@@ -54,13 +54,14 @@ if (isset($_POST['login'])) {
 <head>
     <meta charset="UTF-8">
     <title>RelaxCorp</title>
+    <link rel="stylesheet" href="style.css"> </head>
 </head>
 <body>
 <div class="container">
     <h1 class="text-center">¡Bienvenido!</h1>
     <p class="text-center">
-        Texto de información sobre la página<br>
-        <strong> Texto de información centrado</strong>
+        Página de descanso ¡¡Es hora de jugar!!<br>
+        <strong>RelaxCorp</strong>
     </p>
 
 <?php if ($error): ?>
