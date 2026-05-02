@@ -1,0 +1,159 @@
+/* Configuración General - Estilo Gaming */
+:root {
+    --bg-color: #0d0d0d;
+    --card-bg: #1a1a1a;
+    --text-color: #e0e0e0;
+    --primary-purple: #8a2be2;
+    --secondary-blue: #00d4ff;
+    --danger-red: #ff4b2b;
+}
+
+body {
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(138, 43, 226, 0.3); /* Brillo morado */
+    border: 1px solid #333;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: var(--secondary-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Inputs y Formularios */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #252525;
+    color: white;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 10px var(--primary-purple);
+}
+
+/* Botones */
+button, .btn {
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+button:hover, .btn:hover {
+    background: var(--secondary-blue);
+    transform: translateY(-2px);
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #222;
+}
+
+th {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+
+tr:hover {
+    background: #2a2a2a;
+}
+
+.btn-delete {
+    color: var(--danger-red);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 20px 0;
+}
+
+a {
+    color: var(--secondary-blue);
+}
+/* --- Mejora de la Tabla --- */
+thead th {
+    background-color: var(--primary-purple); /* Fondo morado */
+    color: #ffffff !important;               /* Texto blanco forzado */
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border: 1px solid #333;
+}
+
+/* --- Convertir enlace en Botón --- */
+.btn-link {
+    background: transparent;
+    color: var(--secondary-blue);
+    border: 2px solid var(--secondary-blue);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Quita el subrayado de link */
+    font-weight: bold;
+    display: inline-block;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+
+.btn-link:hover {
+    background: var(--secondary-blue);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--secondary-blue);
+}
+/* Ocultar la tabla inicialmente */
+#tabla-usuarios {
+    display: none;
+    margin-top: 20px;
+    animation: fadeIn 0.5s; /* Efecto de aparición suave */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
